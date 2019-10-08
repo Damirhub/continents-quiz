@@ -1,0 +1,13 @@
+{
+    "workbench.colorCustomizations": {
+        "[Material Theme Darker High Contrast]": {
+            "sideBar.background": "#111111",
+            "editor.background": "#111111",
+            "panel.background": "#111111",
+            "breadcrumb.background": "#151515"
+        },
+        "activityBar.background": "#3E2A0B",
+        "titleBar.activeBackground": "#573A0F",
+        "titleBar.activeForeground": "#FDFAF5"
+    }
+}
