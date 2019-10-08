@@ -4,28 +4,20 @@ import './App.scss';
 import { isEmpty } from 'lodash'
 import Loader from './UI/Loader/Loader';
 import { shuffle } from './Helpers';
-import Button from './UI/Button/Button';
-
 
 function App({ gameQuestions }) {
 
   console.table(gameQuestions)
-  // console.log( gameQuestions[0] && gameQuestions[0].image)
-
 
   const questions = gameQuestions
-  const correctAnswer = gameQuestions[0].continent
 
   const correctAnswers = gameQuestions.map( q => q.continent)
 
-  console.log('MULTIANSWERS', correctAnswers)
+  console.log('%cCORRECT ANSWERS', 'color: aqua',  correctAnswers)
 
 
 
   const options = ['Africa', 'Asia', 'South America', 'North America', 'Europe', 'Oceania', 'Antarctica']
-
-
-  console.log("CORRECT ANSWER", correctAnswer);
 
   const getAnswers = ( correctAnswer, options ) => {
     let answers = shuffle(options, 3)
@@ -42,19 +34,24 @@ function App({ gameQuestions }) {
 
   console.log("ANSWERS", allAnswers)
 
+  const [clicked, setClicked] = useState([false, false, false])
 
-
-  const checkAnswer = (chosedAnswer, correctAnswer) => {
+  const checkAnswer = (chosedAnswer, correctAnswer, i) => {
+    console.log("IIIIIIII", i)
+    const newItems = [...clicked]
+    newItems[i] = true
+    setClicked(newItems)
     console.log("CHOSED ANSWER", chosedAnswer)
     console.log("CORRECT ANSWER", correctAnswer)
-
+    
     if (chosedAnswer === correctAnswer)
     console.log('%cCORRECT', 'color: lawngreen')
     else
     console.log('%cWRONG', 'color: RED')
+
   }
 
- let clicked = false;
+console.log('clicked', clicked);
 
   return (
     <div className="App">
@@ -68,24 +65,15 @@ function App({ gameQuestions }) {
             {allAnswers[i].map( (answer, i) => 
               <div key = {i}>
 
-      <Button onClick = {() =>checkAnswer(answer, question.continent)} clicked = {clicked}>{answer}</Button>
-               
+              <button 
+              style = {  { background: (clicked[i] && 'greenyellow') }} 
+              onClick = {() => checkAnswer(answer, question.continent, i ) }>{answer}</button>
               <br/></div>)
-              }
+              }            
             <h5> correct is {question.continent}</h5>
           </div>
         )
         }
-
-
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react'
 import './Button.scss'
 
-const Button = ({children, clicked, onClick},  ...props) => {
+const Button = ({children, clicked, onClick}) => {
 
     // const bg  =  `${(clicked ? 'yellow' : 'green')}`
     // console.log(bg)
