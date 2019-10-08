@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 // import logo from './logo.svg';
 import './App.scss';
 import { isEmpty } from 'lodash'
 import Loader from './UI/Loader/Loader';
 import { shuffle } from './Helpers';
+import Button from './UI/Button/Button';
 
 
 function App({ gameQuestions }) {
@@ -41,15 +42,19 @@ function App({ gameQuestions }) {
 
   console.log("ANSWERS", allAnswers)
 
+
+
   const checkAnswer = (chosedAnswer, correctAnswer) => {
     console.log("CHOSED ANSWER", chosedAnswer)
     console.log("CORRECT ANSWER", correctAnswer)
+
     if (chosedAnswer === correctAnswer)
     console.log('%cCORRECT', 'color: lawngreen')
     else
     console.log('%cWRONG', 'color: RED')
   }
 
+ let clicked = false;
 
   return (
     <div className="App">
@@ -63,8 +68,8 @@ function App({ gameQuestions }) {
             {allAnswers[i].map( (answer, i) => 
               <div key = {i}>
 
-                <button onClick = {() =>checkAnswer(answer, question.continent)}>{answer}</button>
-                
+      <Button onClick = {() =>checkAnswer(answer, question.continent)} clicked = {clicked}>{answer}</Button>
+               
               <br/></div>)
               }
             <h5> correct is {question.continent}</h5>
