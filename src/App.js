@@ -8,55 +8,70 @@ import { shuffle } from './Helpers';
 
 function App({ gameQuestions }) {
 
-  // console.table(gameQuestions)
+  console.table(gameQuestions)
   // console.log( gameQuestions[0] && gameQuestions[0].image)
 
 
   const questions = gameQuestions
   const correctAnswer = gameQuestions[0].continent
 
+  const correctAnswers = gameQuestions.map( q => q.continent)
+
+  console.log('MULTIANSWERS', correctAnswers)
+
+
+
+  const options = ['Africa', 'Asia', 'South America', 'North America', 'Europe', 'Oceania', 'Antarctica']
+
+
   console.log("CORRECT ANSWER", correctAnswer);
 
-  const options= ['Africa', 'Asia', 'South America', 'North America', 'Europe', 'Oceania', 'Antarctica']
+  const getAnswers = ( correctAnswer, options ) => {
+    let answers = shuffle(options, 3)
+    answers.push(correctAnswer)
+    answers = [...new Set(answers)]
+    if (answers.length === 4) {
+      answers.shift()
+      shuffle(answers)
+    }
+    return answers
+  }
 
+  const allAnswers = correctAnswers.map( answer => getAnswers( answer, options) )
 
+  console.log("ANSWERS", allAnswers)
 
-    const filtered = shuffle(options, 3)
-    filtered.filter(i => i !== correctAnswer)
-
-      if(filtered.length === 3) {
-        filtered.pop()
-      }
-    filtered.push(correctAnswer)
-
-    console.log("filtered", filtered)
-
+  const checkAnswer = (chosedAnswer, correctAnswer) => {
+    console.log("CHOSED ANSWER", chosedAnswer)
+    console.log("CORRECT ANSWER", correctAnswer)
+    if (chosedAnswer === correctAnswer)
+    console.log('%cCORRECT', 'color: lawngreen')
+    else
+    console.log('%cWRONG', 'color: RED')
+  }
 
 
   return (
     <div className="App">
       {isEmpty(gameQuestions[0]) && <Loader />}
       <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        {questions && questions[0].image &&
-          <img src={questions[0].image} width='100px' height='100px' alt = ''/>
-        }
 
         {questions && questions.map((question, i) =>
           <div className='position' key={i} >
-            <img src={question.image} width='100px' height='100px'  alt = '' />
+            <img src={question.image} width='100px' height='100px' alt='' />
 
+            {allAnswers[i].map( (answer, i) => 
+              <div key = {i}>
 
-            <h5> {question.continent}</h5>
-
+                <button onClick = {() =>checkAnswer(answer, question.continent)}>{answer}</button>
+                
+              <br/></div>)
+              }
+            <h5> correct is {question.continent}</h5>
           </div>
         )
         }
 
-
-        <h2>{gameQuestions[0].continent}</h2>
-
-        <h1> START APP </h1>
 
         <a
           className="App-link"
