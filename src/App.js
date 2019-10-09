@@ -71,7 +71,7 @@ function App({ gameQuestions, next }) {
                 </div>)
               }
               <h5> Correct is {question.continent}</h5>
-              <button className="button" onClick={next}>
+              <button className="button" onClick={next} disabled>
                 Next
                       </button>
             </div>

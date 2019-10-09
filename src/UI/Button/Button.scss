@@ -13,5 +13,13 @@ button{
         background: #feb63d;
         color: white;
     }
+    &:disabled {
+        color: grey;
+        &:hover{
+            background: transparent;     
+    }}
+}
 
+button:last-child {
+    border: 1px solid #088c50;
 }
