@@ -1,10 +1,17 @@
-button {
-   width: 200px;
-   min-height: 50px;
-   margin: 10px ;
-   border-radius: 10px;
-}
+button{
+    justify-content: center;
+    height: auto;
+    width: 286px;
+    max-width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid #feb63d;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-top: 20px;
+    &:hover{
+        background: #feb63d;
+        color: white;
+    }
 
-.clicked {
-    background: red;
 }

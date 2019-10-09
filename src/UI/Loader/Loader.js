@@ -7,7 +7,6 @@ const Loader = () => {
 
     const [show, setShow] = useState(true)
 
-
     useEffect(() => {
         let timer1 = setTimeout(() => {
             setShow(true)
@@ -21,9 +20,6 @@ const Loader = () => {
         };
     }, [timerIn, timerOut]
     )
-
-
-
 
     return (
         <>

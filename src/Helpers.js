@@ -1,11 +1,3 @@
-export const random = (array, arrayLength) => {
-    let temp = []
-    const randomize = (array, cb) => { [...Array(array)].forEach(cb) }
-    randomize(arrayLength, _ => temp.push(array[Math.floor(Math.random() * array.length)]))
-    return temp
-}
-
-
 export const shuffle = (array, arrayLength) => {
     let i, j, temp
 
