@@ -7,13 +7,21 @@ body {
   
 }
 .question-wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: row;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  margin-bottom: 30px;
+  width: 100%;
+    img {
+      display: inline-block !important ;
+      font-size: calc(10px + 2vmin);
+      color: white;
+      margin-bottom: 30px;
+    }
+
 }
-.question {
-  padding: 30px;
-}
+// .question-wrapper {
+
+//   font-size: calc(10px + 2vmin);
+//   color: white;
+//   margin-bottom: 30px;
+// }
+// .question {
+//   padding: 30px;
+// }

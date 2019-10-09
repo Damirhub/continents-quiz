@@ -5,9 +5,11 @@ import Loader from './UI/Loader/Loader';
 import { shuffle } from './Helpers';
 import Button from './UI/Button/Button';
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import SliderWrapper from './UI/Slider/Slider';
 
-function App({ gameQuestions }) {
-
+function App({ gameQuestions, next }) {
   console.table(gameQuestions)
 
   const questions = gameQuestions
@@ -40,12 +42,12 @@ function App({ gameQuestions }) {
     console.log("%cCHOSED ANSWER", 'color: teal', chosedAnswer)
     console.log("%cCORRECT ANSWER", 'color: green', correctAnswer)
 
-    if (chosedAnswer === correctAnswer){
-        setPoints( points + 750 )
-        localStorage.setItem("points", `${points}`);
-        console.log(points);
-        
-        console.log('%cCORRECT', 'color: lawngreen')
+    if (chosedAnswer === correctAnswer) {
+      setPoints(points + 750)
+      localStorage.setItem("points", `${points}`);
+      console.log(points);
+
+      console.log('%cCORRECT', 'color: lawngreen')
     }
     else
       console.log('%cWRONG', 'color: RED', localStorage.getItem('points'))
@@ -55,27 +57,30 @@ function App({ gameQuestions }) {
     <div className="App">
       {isEmpty(gameQuestions[0]) && <Loader />}
       <div className="question-wrapper">
+        <SliderWrapper>
+          {questions && questions.map((question, i) =>
+            <div className='question' key={i} >
+              <img src={question.image} width='300px' height='200px' alt='' />
 
-        {questions && questions.map((question, i) =>
-          <div className='question' key={i} >
-            <img src={question.image} width='300px' height='200px' alt='' />
-
-            {allAnswers[i].map( (answer, i) => 
-              <div key = {i}>
-              <Button 
-                onClick = {() => checkAnswer(answer, question.continent, i ) }>{answer}
-              </Button>
-              <br/>
-              </div>)
-              }            
-            <h5> Correct is {question.continent}</h5>
-          </div>
-        )
-        }
+              {allAnswers[i].map((answer, i) =>
+                <div key={i}>
+                  <Button
+                    onClick={() => checkAnswer(answer, question.continent, i)}>{answer}
+                  </Button>
+                  <br />
+                </div>)
+              }
+              <h5> Correct is {question.continent}</h5>
+              <button className="button" onClick={next}>
+                Next
+                      </button>
+            </div>
+          )
+          }</SliderWrapper>
       </div>
     </div>
   );
 }
 
 
-  export default App;
+export default App;
