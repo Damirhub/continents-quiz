@@ -9,6 +9,7 @@ button{
     border-radius: 10px;
     font-weight: bold;
     margin-top: 20px;
+    cursor: pointer;
     &:hover{
         background: #feb63d;
         color: white;
@@ -16,7 +17,8 @@ button{
     &:disabled {
         color: grey;
         &:hover{
-            background: transparent;     
+            background: transparent;   
+            cursor: not-allowed;  
     }}
 }
 
